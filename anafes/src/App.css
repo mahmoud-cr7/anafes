@@ -1,11 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
   font-family: "Almarai", sans-serif;
 }
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  width: 100%;
+}
+
+/* Ensure html, body, and #root take up full height */
+html,
+body,
+#root {
+  height: 100%;
 }

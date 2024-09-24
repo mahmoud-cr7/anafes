@@ -1,0 +1,26 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.logo img{
+  padding-inline: 30px;
+}
+.social img,
+.logo img {
+  width: 50px;
+  height: 45px;
+  margin: 0 10px;
+}
+.social img {
+  background-color: white;
+  border-radius: 50%;
+  border-color: transparent;
+}

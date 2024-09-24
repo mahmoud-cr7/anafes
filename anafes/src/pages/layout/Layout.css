@@ -1,0 +1,19 @@
+*{
+  text-decoration: none;
+}
+.layout {
+  display: flex;
+  gap: 40px;
+  text-align: end;
+  justify-content: end;
+  border-radius: 10px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .layout {
+    flex-wrap: wrap;
+  }
+}
+
+

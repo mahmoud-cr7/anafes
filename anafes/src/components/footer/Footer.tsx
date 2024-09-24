@@ -8,8 +8,8 @@ const Footer = () => {
         <img src="/src/assets/icons/twitter.png" alt="twitter" />
       </div>
       <p>جميع الحقوق محفوظة - نافس 2022</p>
-      <div>
-        <img src="/src/assets/images/logo.png" alt="logo" />
+      <div className="logo">
+        <img src="/src/assets/images/nafes_plus_logo_dark.png" alt="logo" />
       </div>
     </div>
   );

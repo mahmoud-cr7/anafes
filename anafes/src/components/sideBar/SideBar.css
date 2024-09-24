@@ -1,0 +1,81 @@
+.sideBar {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: center;
+  padding: 30px;
+  background-color: white;
+  box-shadow: 0px 4px 10px rgb(0 0 0 / 12%);
+  margin: 30px;
+  width: fit-content;
+  border-radius: 10px;
+}
+.sideBar .profile-card {
+  text-align: end;
+  border-bottom:1px solid #cdcdcf ;
+  padding-bottom: 15px;
+}
+.sideBar .profile-card .student,
+.sideBar .profile-card .school {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: end;
+  margin-bottom: 15px;
+}
+.sideBar .profile-card .school {
+  background-color: #7e57c2;
+  width: 300px;
+  padding: 15px;
+  border-radius: 6px;
+  color: white;
+}
+.sideBar .profile-card .btn {
+  width: 330px;
+  background-color: white;
+  color: #7e57c2;
+  border-radius: 6px;
+  padding: 10px;
+  border: 1px solid #7e57c2;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.sideBar .profile-card .btn:hover{
+background-color: #7e57c2;
+color: white;
+}
+.sideBar .profile-card .student-content,
+.sideBar .profile-card .school-content {
+  text-align: end;
+}
+.sideBar .profile-card .student-content h3,
+.sideBar .profile-card .school-content h3 {
+  font-size: 20px;
+  margin: 0;
+}
+.sideBar .profile-card .student-content p,
+.sideBar .profile-card .school-content p {
+  margin: 0;
+}
+
+.sideBar .profile-card img {
+  width: 50px;
+}
+ul li {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin: 10px;
+  gap: 10px;
+  text-align: end;
+  justify-content: end;
+  cursor: pointer;
+}
+ul li h3 {
+  font-size: 20px;
+  color: #cdcdcf;
+}
+.active {
+  color: #000;
+}
