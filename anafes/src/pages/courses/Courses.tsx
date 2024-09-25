@@ -2,11 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Courses.css";
 import { Atom } from "react-loading-indicators";
+import { Course } from "../../types/Types";
 
-interface Course {
-  name: string;
-  icon: string;
-}
+
 
 const CourseList: React.FC = () => {
   const [courses, setCourses] = useState<Course[]>([]);

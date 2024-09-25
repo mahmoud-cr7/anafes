@@ -1,27 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from "react";
-import axios from "axios";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import "./Login.css";
 import { useAuth } from "../../hooks/useAuth";
 import { Message } from "primereact/message";
+import { LoginParams, LoginResponse } from "../../types/Types";
+import { login } from "../../api/api";
 
-interface LoginParams {
-  email: string;
-  pass: string;
-}
-
-interface LoginResponse {
-  status: boolean;
-  msg: string;
-  token?: string;
-  user?: {
-    id: number;
-    name: string;
-  };
-}
 // validation of email
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -32,28 +19,9 @@ const Login: React.FC = () => {
   const { loggedIn, setLoggedIn } = useAuth(); // Get loggedIn and setLoggedIn from context
   const navigate = useNavigate();
 
-  const login = async ({
-    email,
-    pass,
-  }: LoginParams): Promise<LoginResponse> => {
-    const response = await axios({
-      url: "https://nafes.app/cv_task/api/login.php",
-      method: "POST",
-      headers: {
-        "Content-type": "application/x-www-form-urlencoded",
-      },
-      data: new URLSearchParams({
-        email: email,
-        pass: pass,
-      }),
-    });
-
-    return response.data;
-  };
-
   const mutation: UseMutationResult<LoginResponse, Error, LoginParams> =
     useMutation({
-      mutationFn: login,
+      mutationFn: login, // Use the imported login function
       onSuccess: (data: LoginResponse & { status: boolean; msg: string }) => {
         if (!data.status || !data.user) {
           toast.error(

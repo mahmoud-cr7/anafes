@@ -8,7 +8,7 @@ const Nav = () => {
   // Logout function to set loggedIn to false and navigate to home
   const handleLogout = () => {
     setLoggedIn(false); // Set loggedIn to false
-    localStorage.removeItem("token"); // Optionally clear localStorage
+    localStorage.removeItem("token"); 
     localStorage.removeItem("user"); // Optionally clear user info from localStorage
     navigate("/"); // Redirect to home
   };
