@@ -1,6 +1,8 @@
 import "./profile.css";
 
 const Profile = () => {
+    const user = JSON.parse(localStorage.getItem("user") || "{}");
+
   return (
     <div className="profile">
       <div className="img">
@@ -10,10 +12,22 @@ const Profile = () => {
       <div className="info">
         <form className="login-form">
           <label htmlFor="name"> الاسم</label>
-          <input type="text" id="name" name="name" required />
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            defaultValue={user.name}
+          />
 
           <label htmlFor="email"> البريد الالكتروني</label>
-          <input type="email" id="email" name="email" required />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            defaultValue={user.email}
+          />
 
           <div className="btns">
             <button className="btn" type="submit">
@@ -24,16 +38,21 @@ const Profile = () => {
       </div>
       <div className="confirm">
         <div className="password">
-          <input type="password" id="password" name="password" required />
-          <label htmlFor="password"> كلمة السر الحالية</label>
+          <input type="password" id="oldPassword" name="password" required />
+          <label htmlFor="oldPassword"> كلمة السر الحالية</label>
         </div>
         <div className="password">
-          <input type="password" id="password" name="password" required />
-          <label htmlFor="password"> كلمة السر الجديدة</label>
+          <input type="password" id="newPassword" name="password" required />
+          <label htmlFor="newPassword"> كلمة السر الجديدة</label>
         </div>
         <div className="password">
-          <input type="password" id="password" name="password" required />
-          <label htmlFor="password"> تأكيد كلمة السر </label>
+          <input
+            type="password"
+            id="confirmPassword"
+            name="password"
+            required
+          />
+          <label htmlFor="confirmPassword"> تأكيد كلمة السر </label>
         </div>
         <div className="btns">
           <button className="btn" type="submit">

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Courses.css";
+import { Atom } from "react-loading-indicators";
 
 interface Course {
   name: string;
@@ -30,7 +31,7 @@ const CourseList: React.FC = () => {
         } else {
           setError("Failed to fetch courses.");
         }
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (err) {
         setError("An error occurred while fetching the courses.");
       } finally {
@@ -43,7 +44,23 @@ const CourseList: React.FC = () => {
 
   return (
     <div>
-      {loading && <p>Loading courses...</p>}
+      {loading && (
+        <div>
+          <Atom
+            color="#7e57c2"
+            size="large"
+            text="Loading..."
+            textColor="#7e57c2"
+            style={{
+              textAlign: "end",
+              marginInline: "auto",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "end",
+            }}
+          />
+        </div>
+      )}
       {error && <p>{error}</p>}
       <div className="course-list">
         {courses.map((course, index) => (

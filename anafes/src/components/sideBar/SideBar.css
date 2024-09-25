@@ -12,8 +12,11 @@
 }
 .sideBar .profile-card {
   text-align: end;
-  border-bottom:1px solid #cdcdcf ;
+  border-bottom: 1px solid #cdcdcf;
   padding-bottom: 15px;
+}
+.sideBar .profile-card .student {
+  padding-inline: 10px;
 }
 .sideBar .profile-card .student,
 .sideBar .profile-card .school {
@@ -41,9 +44,9 @@
   cursor: pointer;
   transition: 0.3s;
 }
-.sideBar .profile-card .btn:hover{
-background-color: #7e57c2;
-color: white;
+.sideBar .profile-card .btn:hover {
+  background-color: #7e57c2;
+  color: white;
 }
 .sideBar .profile-card .student-content,
 .sideBar .profile-card .school-content {
@@ -61,6 +64,8 @@ color: white;
 
 .sideBar .profile-card img {
   width: 50px;
+  height: 60px;
+  border-radius: 10px;
 }
 ul li {
   list-style: none;

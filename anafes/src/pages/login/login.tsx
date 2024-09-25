@@ -11,13 +11,15 @@ interface LoginParams {
 }
 
 interface LoginResponse {
-  token: string;
-  user: {
+  status: boolean;
+  msg: string;
+  token?: string;
+  user?: {
     id: number;
     name: string;
   };
 }
-
+// validation of email
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const Login: React.FC = () => {
@@ -48,14 +50,24 @@ const Login: React.FC = () => {
   const mutation: UseMutationResult<LoginResponse, Error, LoginParams> =
     useMutation({
       mutationFn: login,
-      onSuccess: (data: LoginResponse) => {
-        // Store the token (optional)
-        console.log("Login successful", data);
-        navigate("/layout/courses"); // Redirect to Layout after successful login
+      onSuccess: (data: LoginResponse & { status: boolean; msg: string }) => {
+        if (!data.status || !data.user) {
+          toast.error(
+            data.msg || "Login failed. Please check your credentials."
+          );
+          return;
+        }
+
+        // Save token and user in localStorage
+        localStorage.setItem("user", JSON.stringify(data.user));
+        localStorage.setItem("token", data.token || "");
+        console.log(data.user);
+
+        // Redirect after login
+        navigate("/layout/courses");
       },
       onError: (error: Error) => {
-        console.error("Login failed", error.message);
-        toast.error("Login failed.");
+        toast.error("Login failed." + error);
       },
     });
 
