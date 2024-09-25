@@ -13,6 +13,7 @@
 @media (max-width: 768px) {
   .layout {
     flex-wrap: wrap;
+    margin-bottom: 100px;
   }
 }
 

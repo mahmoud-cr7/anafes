@@ -17,3 +17,11 @@ export interface Course {
   name: string;
   icon: string;
 }
+export interface InputFieldProps {
+  id: string;
+  name: string;
+  type: string;
+  label: string;
+  required: boolean;
+  defaultValue?: string; // Make defaultValue optional
+}

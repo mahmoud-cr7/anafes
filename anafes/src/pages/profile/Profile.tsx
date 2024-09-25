@@ -1,7 +1,8 @@
+import InputField from "../../components/input/Input";
 import "./profile.css";
 
 const Profile = () => {
-    const user = JSON.parse(localStorage.getItem("user") || "{}");
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
 
   return (
     <div className="profile">
@@ -11,24 +12,22 @@ const Profile = () => {
       </div>
       <div className="info">
         <form className="login-form">
-          <label htmlFor="name"> الاسم</label>
-          <input
-            type="text"
+          <InputField
             id="name"
             name="name"
-            required
+            type="text"
+            label="الاسم"
+            required={true}
             defaultValue={user.name}
           />
-
-          <label htmlFor="email"> البريد الالكتروني</label>
-          <input
-            type="email"
+          <InputField
             id="email"
             name="email"
-            required
+            type="email"
+            label="البريد الالكتروني"
+            required={true}
             defaultValue={user.email}
           />
-
           <div className="btns">
             <button className="btn" type="submit">
               حفظ
@@ -37,23 +36,27 @@ const Profile = () => {
         </form>
       </div>
       <div className="confirm">
-        <div className="password">
-          <input type="password" id="oldPassword" name="password" required />
-          <label htmlFor="oldPassword"> كلمة السر الحالية</label>
-        </div>
-        <div className="password">
-          <input type="password" id="newPassword" name="password" required />
-          <label htmlFor="newPassword"> كلمة السر الجديدة</label>
-        </div>
-        <div className="password">
-          <input
-            type="password"
-            id="confirmPassword"
-            name="password"
-            required
-          />
-          <label htmlFor="confirmPassword"> تأكيد كلمة السر </label>
-        </div>
+        <InputField
+          id="oldPassword"
+          name="oldPassword"
+          type="password"
+          label="كلمة السر الحالية"
+          required={true}
+        />
+        <InputField
+          id="newPassword"
+          name="newPassword"
+          type="password"
+          label="كلمة السر الجديدة"
+          required={true}
+        />
+        <InputField
+          id="confirmPassword"
+          name="confirmPassword"
+          type="password"
+          label="تأكيد كلمة السر"
+          required={true}
+        />
         <div className="btns">
           <button className="btn" type="submit">
             حفظ
