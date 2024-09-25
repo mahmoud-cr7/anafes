@@ -1,19 +1,35 @@
 import { useState } from "react";
 import axios from "axios";
+import { useMutation, UseMutationResult } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import "./Login.css";
-import { useMutation } from "react-query";
 
 interface LoginParams {
   email: string;
   pass: string;
 }
 
-const Login = () => {
+interface LoginResponse {
+  token: string;
+  user: {
+    id: number;
+    name: string;
+  };
+}
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  // The login function that sends the POST request
-   const login = async ({ email, pass }: LoginParams) => {
+  const navigate = useNavigate();
+
+  const login = async ({
+    email,
+    pass,
+  }: LoginParams): Promise<LoginResponse> => {
     const response = await axios({
       url: "https://nafes.app/cv_task/api/login.php",
       method: "POST",
@@ -21,35 +37,37 @@ const Login = () => {
         "Content-type": "application/x-www-form-urlencoded",
       },
       data: new URLSearchParams({
-        email,
-        pass,
-      }).toString(),
+        email: email,
+        pass: pass,
+      }),
     });
 
-    return response.data; // Return the response data from the API
+    return response.data;
   };
 
-  const mutation = useMutation  (login, {
-    onSuccess: (data) => {
-      console.log("Login successful", data);
-      // Handle successful login, e.g., store token, redirect, etc.
-    },
-    onError: (error) => {
-      console.error("Login failed", error);
-    },
-  });
+  const mutation: UseMutationResult<LoginResponse, Error, LoginParams> =
+    useMutation({
+      mutationFn: login,
+      onSuccess: (data: LoginResponse) => {
+        // Store the token (optional)
+        console.log("Login successful", data);
+        navigate("/layout/courses"); // Redirect to Layout after successful login
+      },
+      onError: (error: Error) => {
+        console.error("Login failed", error.message);
+        toast.error("Login failed.");
+      },
+    });
 
-  // Handle form submission
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
 
-    // Example validation or form submission logic
-    if (!email.includes("@")) {
-      alert("Please enter a valid email address.");
+    if (!email.match(EMAIL_REGEX)) {
+      toast.error("Wrong Email or Password.");
       return;
     }
     if (password.length < 6) {
-      alert("Password must be at least 6 characters.");
+      toast.error("Wrong Email or Password.");
       return;
     }
     mutation.mutate({ email, pass: password });
@@ -64,8 +82,8 @@ const Login = () => {
       <div className="login-container">
         <h1>تسجيل الدخول</h1>
         <p>
-          قم بتسجيل الدخول و ابدأالمنافسة واكتشف طرق جديدة للمذاكرةو التعلم و
-          التدريب
+          قم بتسجيل الدخول و ابدأ المنافسة واكتشف طرق جديدة للمذاكرة والتعلم
+          والتدريب
         </p>
         <form className="login-form" onSubmit={handleSubmit}>
           <label htmlFor="email"> البريد الالكتروني</label>

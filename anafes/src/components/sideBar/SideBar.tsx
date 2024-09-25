@@ -19,15 +19,13 @@ const SideBar = () => {
           <img src="/src/assets/images/logo.png" alt="" />
         </div>
         <button className="btn">
-          <Link to="/profile">الملف الشخصي</Link>
+          <Link to="/layout/profile">الملف الشخصي</Link>
         </button>
       </div>
       <ul>
         <li>
           <h3 className="active">
-            <Link to="/">
-             المواد الدراسية
-            </Link>
+            <Link to="/layout/courses">المواد الدراسية</Link>
           </h3>
           <img src="/src/assets/icons/home_selection.png" alt="" />
         </li>

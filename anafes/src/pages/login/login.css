@@ -1,0 +1,59 @@
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin: 20px;
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 12%);
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+.login .login-container {
+  display: flex;
+  flex-direction: column;
+  text-align: end;
+}
+.login .login-container p {
+  color: #777;
+  font-size: 20px;
+  width: 500px;
+}
+
+.login .login-container .login-form {
+  display: flex;
+  flex-direction: column;
+  text-align: end;
+  padding: 10px;
+}
+.login .login-container .login-form label {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+.login .login-container .login-form input {
+  padding-inline: 30px;
+  padding-block: 10px;
+  border-radius: 6px;
+  border: 2px solid #edeff1;
+  outline: none;
+  margin-bottom: 5px;
+  color: #333; 
+  background-color: #e8f0fe;
+}
+.login .login-container .login-form input::placeholder {
+  color: #888;
+}
+.login .login-container .login-form .btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #7e57c2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 10px;
+}
