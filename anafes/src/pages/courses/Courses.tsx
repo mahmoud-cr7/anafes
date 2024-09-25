@@ -45,22 +45,18 @@ const CourseList: React.FC = () => {
   return (
     <div>
       {loading && (
-        <div>
-          <Atom
-            color="#7e57c2"
-            size="large"
-            text="Loading..."
-            textColor="#7e57c2"
-            style={{
-              textAlign: "end",
-              marginInline: "auto",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "end",
-            }}
-          />
+        <div className="loading-container">
+          <div className="loading">
+            <Atom
+              color="#7e57c2"
+              size="large"
+              text="Loading..."
+              textColor="#7e57c2"
+            />
+          </div>
         </div>
       )}
+
       {error && <p>{error}</p>}
       <div className="course-list">
         {courses.map((course, index) => (
