@@ -24,7 +24,7 @@ const SideBar = () => {
         <div className="school">
           <div className="school-content">
             <h3>{user.school.name || "اسم المدرسة"}</h3>
-            <p>{user.grade.name || " المرحلة"} </p>
+            <p>{user.grade.name  || " المرحلة"} - {user.group.name} </p>
           </div>
           <img src="/src/assets/images/logo.png" alt="School" />
         </div>

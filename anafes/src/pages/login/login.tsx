@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from "react";
 import axios from "axios";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import "./Login.css";
+import { useAuth } from "../../hooks/useAuth";
 
 interface LoginParams {
   email: string;
@@ -25,6 +27,7 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const { loggedIn, setLoggedIn } = useAuth(); // Get loggedIn and setLoggedIn from context
 
   const navigate = useNavigate();
 
@@ -55,6 +58,7 @@ const Login: React.FC = () => {
           toast.error(
             data.msg || "Login failed. Please check your credentials."
           );
+          setLoggedIn(false);
           return;
         }
 
@@ -62,6 +66,8 @@ const Login: React.FC = () => {
         localStorage.setItem("user", JSON.stringify(data.user));
         localStorage.setItem("token", data.token || "");
         console.log(data.user);
+
+        setLoggedIn(true);
 
         // Redirect after login
         navigate("/layout/courses");
