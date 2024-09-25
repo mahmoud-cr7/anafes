@@ -136,6 +136,9 @@
     align-items: center;
   }
 
+.profile .info form input {
+  width: fit-content;
+}
   .info form input,
   .confirm input {
     width: 90%; 

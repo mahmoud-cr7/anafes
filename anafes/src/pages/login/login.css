@@ -11,6 +11,7 @@
   margin-right: auto;
   padding: 20px;
   border-radius: 10px;
+  margin-bottom: 100px;
 }
 .login .login-container {
   display: flex;
@@ -40,7 +41,7 @@
   border: 2px solid #edeff1;
   outline: none;
   margin-bottom: 5px;
-  color: #333; 
+  color: #333;
   background-color: #e8f0fe;
 }
 .login .login-container .login-form input::placeholder {
@@ -57,9 +58,9 @@
   font-size: 18px;
   margin-top: 10px;
 }
-.error{
+.error {
   border: 1px solid red;
-  color : red;
+  color: red;
   border-radius: 5px;
   padding: 10px;
 }
