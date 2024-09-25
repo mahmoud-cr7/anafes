@@ -6,25 +6,29 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Profile from "./pages/profile/Profile";
 import Login from "./pages/login/login";
 import { AuthProvider } from "./hooks/useAuth";
+import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
 
 function App() {
   return (
     <>
       <AuthProvider>
         <Router>
-            <Nav />
+          <Nav />
           <Routes>
-            {/* Login page */}
+            {/* Public Route: Login */}
             <Route path="/" element={<Login />} />
-            {/* Layout with nested routes */}
-            <Route path="/layout" element={<Layout />}>
-              {/* Nested routes rendered inside Layout */}
-              <Route path="courses" element={<CourseList />} />
-              <Route path="profile" element={<Profile />} />
+
+            {/* Protected Routes */}
+            <Route path="/layout" element={<ProtectedRoute />}>
+              <Route path="" element={<Layout />}>
+                {/* Nested routes rendered inside Layout */}
+                <Route path="courses" element={<CourseList />} />
+                <Route path="profile" element={<Profile />} />
+              </Route>
             </Route>
           </Routes>
+          <Footer />
         </Router>
-        <Footer />
       </AuthProvider>
     </>
   );
