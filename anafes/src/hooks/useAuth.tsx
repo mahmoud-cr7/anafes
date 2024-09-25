@@ -1,5 +1,11 @@
 // AuthContext.tsx
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 
 // Create the context
 interface AuthContextType {
@@ -13,7 +19,16 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [loggedIn, setLoggedIn] = useState<boolean>(false);
+  const [loggedIn, setLoggedIn] = useState<boolean>(() => {
+    // Check localStorage for initial loggedIn state
+    const storedLoginState = localStorage.getItem("loggedIn");
+    return storedLoginState === "true" ? true : false;
+  });
+
+  // Persist login state to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("loggedIn", String(loggedIn));
+  }, [loggedIn]);
 
   return (
     <AuthContext.Provider value={{ loggedIn, setLoggedIn }}>
