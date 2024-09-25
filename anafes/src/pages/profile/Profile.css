@@ -85,3 +85,47 @@
     justify-content: end;
     gap: 80px;
 }
+.confirm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.password {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.password label {
+  margin-bottom: 0.5rem;
+  font-size: 14px;
+}
+
+.password input {
+  width: 80%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .password {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .password label {
+    width: 30%;
+    margin-bottom: 0;
+    margin-right: 1rem;
+    text-align: right;
+  }
+
+  .password input {
+    width: 70%;
+  }
+}

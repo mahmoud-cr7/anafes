@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import "./Login.css";
 import { useAuth } from "../../hooks/useAuth";
+import { Message } from "primereact/message";
 
 interface LoginParams {
   email: string;
@@ -27,8 +28,8 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<boolean>(false);
   const { loggedIn, setLoggedIn } = useAuth(); // Get loggedIn and setLoggedIn from context
-
   const navigate = useNavigate();
 
   const login = async ({
@@ -58,6 +59,7 @@ const Login: React.FC = () => {
           toast.error(
             data.msg || "Login failed. Please check your credentials."
           );
+          setError(true);
           setLoggedIn(false);
           return;
         }
@@ -128,6 +130,13 @@ const Login: React.FC = () => {
             تسجيل الدخول
           </button>
         </form>
+        {error && (
+          <Message
+            severity="error"
+            className="error"
+            content="Wrong Email or Password."
+          />
+        )}
       </div>
     </div>
   );
