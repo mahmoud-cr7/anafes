@@ -7,7 +7,7 @@ import "./Login.css";
 import { useAuth } from "../../hooks/useAuth";
 import { Message } from "primereact/message";
 import { LoginParams, LoginResponse } from "../../types/Types";
-import { login } from "../../api/api";
+import { login } from "../../api/LoginApi";
 
 // validation of email
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

@@ -1,44 +1,34 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import "./Courses.css";
 import { Atom } from "react-loading-indicators";
 import { Course } from "../../types/Types";
-
-
+import { fetchCourses } from "../../api/CoursesApi";
 
 const CourseList: React.FC = () => {
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchCourses = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const response = await axios.get(
-          "https://nafes.app/cv_task/api/course_list.php?userId=2211",
-          {
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded",
-            },
-          }
-        );
-        if (response.data.status) {
-          setCourses(response.data.courseList);
-        } else {
-          setError("Failed to fetch courses.");
-        }
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      } catch (err) {
-        setError("An error occurred while fetching the courses.");
-      } finally {
-        setLoading(false);
+useEffect(() => {
+  const getCourses = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const courseList = await fetchCourses();
+      setCourses(courseList);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unknown error occurred."); 
       }
-    };
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchCourses();
-  }, []);
+  getCourses();
+}, []);
 
   return (
     <div>
